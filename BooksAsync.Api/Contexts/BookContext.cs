@@ -1,9 +1,6 @@
 ﻿using BooksAsync.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BooksAsync.Api.Contexts
 {
@@ -49,21 +46,22 @@ namespace BooksAsync.Api.Contexts
                     Title = "The Winter Wind",
                     Description = "The book that seems impossible to write."
                 },
-                    new Book()
-                    {
-                        Id = Guid.Parse("ec175614-738d-4c7b-9188-6f7f0299fae8"),
-                        AuthorId = Guid.Parse("fbb5224a-518c-4f09-89d9-a805af0f28f0"),
-                        Title = "A Game of thrones",
-                        Description = "The first novel in A Song of Ice and Fire."
-                    },
-                    new Book()
-                    {
-                        Id = Guid.Parse("ad8dc07b-6573-4e71-af64-97edff5c18ad"),
-                        AuthorId = Guid.Parse("895a362c-1f4a-4ba7-8f5f-24f810600dfa"),
-                        Title = "Wee Willy Winky",
-                        Description = "A story of the night."
-                    }
-                    );
+                new Book()
+                {
+                    Id = Guid.Parse("ec175614-738d-4c7b-9188-6f7f0299fae8"),
+                    AuthorId = Guid.Parse("fbb5224a-518c-4f09-89d9-a805af0f28f0"),
+                    Title = "A Game of thrones",
+                    Description = "The first novel in A Song of Ice and Fire."
+                },
+                new Book()
+                {
+                    Id = Guid.Parse("ad8dc07b-6573-4e71-af64-97edff5c18ad"),
+                    AuthorId = Guid.Parse("895a362c-1f4a-4ba7-8f5f-24f810600dfa"),
+                    Title = "Wee Willy Winky",
+                    Description = "A story of the night."
+                }
+             );
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
