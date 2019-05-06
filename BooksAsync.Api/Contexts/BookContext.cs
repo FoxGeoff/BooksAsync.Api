@@ -16,52 +16,51 @@ namespace BooksAsync.Api.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //seed Database
             modelBuilder.Entity<Author>().HasData(
                 new Author()
                 {
-                    Id = Guid.Parse("d2888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    Id = Guid.Parse("c8077fa3-9c81-4c0d-b5c7-b44884ffaf29"),
                     FirstName = "George",
                     LastName = "RR Martin"
                 },
                 new Author()
                 {
-                    Id = Guid.Parse("fbb5224a-518c-4f09-89d9-a805af0f28f0"),
+                    Id = Guid.Parse("64d0b6b5-a50c-4e50-9ca5-0851e6eee16d"),
                     FirstName = "Stephen",
                     LastName = "Fry"
                 },
                 new Author()
                 {
-                    Id = Guid.Parse("895a362c-1f4a-4ba7-8f5f-24f810600dfa"),
-                    FirstName = "Doglas",
+                    Id = Guid.Parse("16f33673-09fe-42a8-9e2d-1023a1d65e6f"),
+                    FirstName = "James",
+                    LastName = "Elroy"
+                },
+                new Author()
+                {
+                    Id = Guid.Parse("e731f22a-e272-4ae5-b2eb-290d95770584"),
+                    FirstName = "Douglas",
                     LastName = "Adams"
                 }
-            );
+                );
 
             modelBuilder.Entity<Book>().HasData(
-                new Book()
+                new Book
                 {
-                    Id = Guid.Parse("021e72e4-25fc-4c95-890d-ad3ff074d42f"),
-                    AuthorId = Guid.Parse("d2888e9-2ba9-473a-a40f-e38cb54f9b35"),
-                    Title = "The Winter Wind",
-                    Description = "The book that seems impossible to write."
+                    Id = Guid.Parse("1c714380-05ba-49e3-846a-8dca1f47fbc9"),
+                    AuthorId = Guid.Parse("c8077fa3-9c81-4c0d-b5c7-b44884ffaf29"),
+                    Title = "The Winds of Winter",
+                    Description = "The book that seems imposible to write"
                 },
-                new Book()
+                new Book
                 {
-                    Id = Guid.Parse("ec175614-738d-4c7b-9188-6f7f0299fae8"),
-                    AuthorId = Guid.Parse("fbb5224a-518c-4f09-89d9-a805af0f28f0"),
-                    Title = "A Game of thrones",
-                    Description = "The first novel in A Song of Ice and Fire."
-                },
-                new Book()
-                {
-                    Id = Guid.Parse("ad8dc07b-6573-4e71-af64-97edff5c18ad"),
-                    AuthorId = Guid.Parse("895a362c-1f4a-4ba7-8f5f-24f810600dfa"),
-                    Title = "Wee Willy Winky",
-                    Description = "A story of the night."
-                }
-             );
+                    Id = Guid.Parse("9d3acb2b-7df4-4bd8-9f38-9919f3db1aaf"),
+                    AuthorId = Guid.Parse("c8077fa3-9c81-4c0d-b5c7-b44884ffaf29"),
+                    Title = "The Summer Sun",
+                    Description = "The book that was easy to write"
+                });
+
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }
