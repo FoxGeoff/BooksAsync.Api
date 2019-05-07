@@ -20,10 +20,21 @@ namespace BooksAsync.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBooksAsync()
+        public async Task<IActionResult> GetBooks()
         {
             var bookEntities = await _booksRepository.GetBooksAsync();
             return Ok(bookEntities);
+        }
+
+       [HttpGet]
+       public async Task<IActionResult> GetBook(Guid id)
+        {
+            var bookEntity = await _booksRepository.GetbookAsync(id);
+            if (bookEntity == null)
+            {
+                return NotFound();
+            }
+            return Ok(bookEntity);
         }
     }
 }
