@@ -45,3 +45,4 @@
  
  services.AddScoped<IBooksRepository, BooksRepository>();
  ```
+ * Check: Add BooksController
