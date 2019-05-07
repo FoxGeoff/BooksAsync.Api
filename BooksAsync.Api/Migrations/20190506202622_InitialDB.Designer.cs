@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BooksAsync.Api.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(BooksContext))]
     [Migration("20190506202622_InitialDB")]
     partial class InitialDB
     {

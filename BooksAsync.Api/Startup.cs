@@ -1,4 +1,5 @@
 ﻿using BooksAsync.Api.Contexts;
+using BooksAsync.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,11 +37,12 @@ namespace BooksAsync.Api
                 //TODO:
                 /* options.UseMySql(_config.GetConnectionString("dbconnect"))); */
 
-                services.AddDbContext<BookContext>(option =>
+                services.AddDbContext<BooksContext>(option =>
                     option.UseSqlServer(_dbconnet));
 
-                //TODO: 
-                /* services.AddScoped<ICustomersRepository, CustomersRepository>(); */
+                // services.AddTransient will return a new instance each time - This will not keep state TOO SHORT!
+                // services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
+                services.AddScoped<IBooksRepository, BooksRepository>();
 
             }
 

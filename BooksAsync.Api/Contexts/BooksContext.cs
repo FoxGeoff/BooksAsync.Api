@@ -4,9 +4,9 @@ using System;
 
 namespace BooksAsync.Api.Contexts
 {
-    public class BookContext : DbContext
+    public class BooksContext : DbContext
     {
-        public BookContext(DbContextOptions<BookContext> options)
+        public BooksContext(DbContextOptions<BooksContext> options)
             : base(options)
         {
 
