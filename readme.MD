@@ -45,4 +45,34 @@
  
  services.AddScoped<IBooksRepository, BooksRepository>();
  ```
- * Check: Add BooksController
+ ## Check: Add BooksController
+
+ ## Check: Add an AsyncResultFilter - BookResultFilterAttribute : ResultFilterAttribute
+
+ * Ready for Automapper
+ ```
+ namespace BooksAsync.Api.Filters
+{
+    public class BooksResultFilterAttribute : ResultFilterAttribute
+    {
+        public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+        {
+            var resultFromAction = context.Result as ObjectResult;
+
+            if (resultFromAction?.Value == null
+                || resultFromAction.StatusCode < 200
+                || resultFromAction.StatusCode >= 300)
+            {
+                await next();
+                return;
+            }
+
+            //resultFromAction.Value; Use Automapper
+
+            await next();
+        }
+    }
+}
+```
+
+
