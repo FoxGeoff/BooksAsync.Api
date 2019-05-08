@@ -67,12 +67,14 @@
                 return;
             }
 
-            //resultFromAction.Value; Use Automapper
+			resultFromAction.Value = Mapper.Map<Models.Book>(resultFromAction.Value);
 
             await next();
         }
     }
 }
 ```
+## Check Add Automapper
+* Add: AutoMapper.Extensions.MicrosoftDependencyInjection
 
 
