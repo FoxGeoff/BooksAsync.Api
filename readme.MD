@@ -51,14 +51,13 @@
 
  * Ready for Automapper
  ```
- namespace BooksAsync.Api.Filters
+namespace BooksAsync.Api.Filters
 {
     public class BooksResultFilterAttribute : ResultFilterAttribute
     {
         public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
             var resultFromAction = context.Result as ObjectResult;
-
             if (resultFromAction?.Value == null
                 || resultFromAction.StatusCode < 200
                 || resultFromAction.StatusCode >= 300)
@@ -66,8 +65,7 @@
                 await next();
                 return;
             }
-
-			resultFromAction.Value = Mapper.Map<Models.Book>(resultFromAction.Value);
+            resultFromAction.Value = Mapper.Map<IEnumerable<Models.Book>>(resultFromAction.Value);
 
             await next();
         }
@@ -76,5 +74,31 @@
 ```
 ## Check Add Automapper
 * Add: AutoMapper.Extensions.MicrosoftDependencyInjection
+* Add: BookProfile.cs
+```
+using AutoMapper;
 
+namespace Books.api
+{
+    public class BooksProfile : Profile
+    {
+        public BooksProfile()
+        {
+            CreateMap<BooksAsync.Api.Entities.Book, BooksAsync.Api.Models.Book>()
+                .ForMember(dest => dest.Author, opt => opt.MapFrom(src => $"{src.Author.FirstName} {src.Author.LastName}"));
+        }
+    }
+}
+```
+*Startup -  Automapper registration
+```
+// services.AddTransient will return a new instance each time - This will not keep state TOO SHORT!
+            // services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
+            services.AddScoped<IBooksRepository, BooksRepository>();
 
+            services.AddAutoMapper(); // needs update
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
+```

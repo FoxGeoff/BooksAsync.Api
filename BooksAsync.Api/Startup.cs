@@ -1,4 +1,5 @@
-﻿using BooksAsync.Api.Contexts;
+﻿using AutoMapper;
+using BooksAsync.Api.Contexts;
 using BooksAsync.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,11 +41,13 @@ namespace BooksAsync.Api
                 services.AddDbContext<BooksContext>(option =>
                     option.UseSqlServer(_dbconnet));
 
-                // services.AddTransient will return a new instance each time - This will not keep state TOO SHORT!
-                // services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
-                services.AddScoped<IBooksRepository, BooksRepository>();
-
             }
+
+            // services.AddTransient will return a new instance each time - This will not keep state TOO SHORT!
+            // services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
+            services.AddScoped<IBooksRepository, BooksRepository>();
+
+            services.AddAutoMapper(); // needs update
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                  .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
