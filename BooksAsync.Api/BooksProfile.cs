@@ -7,7 +7,8 @@ namespace BooksAsync.api
         public BooksProfile()
         {
             CreateMap<Api.Entities.Book, Api.Models.Book>()
-                .ForMember(dest => dest.Author, opt => opt.MapFrom(src => $"{src.Author.FirstName} {src.Author.LastName}"));
+                .ForMember(dest => dest.Author, opt => opt.MapFrom(src => 
+                    $"{src.Author.FirstName} {src.Author.LastName}"));
         }
     }
 }

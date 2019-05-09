@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BooksAsync.Api.Filters
 {
-    public class BooksResultFilterAttribute : ResultFilterAttribute
+    public class BookResultFilterAttribute : ResultFilterAttribute
     {
         public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
@@ -18,10 +17,10 @@ namespace BooksAsync.Api.Filters
                 await next();
                 return;
             }
-
-            resultFromAction.Value = Mapper.Map<IEnumerable<Models.Book>>(resultFromAction.Value);
+            resultFromAction.Value = Mapper.Map<Models.Book>(resultFromAction.Value);
 
             await next();
         }
+
     }
 }
