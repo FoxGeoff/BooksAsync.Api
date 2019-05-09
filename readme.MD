@@ -90,7 +90,7 @@ namespace Books.api
     }
 }
 ```
-*Startup -  Automapper registration
+* Startup -  Automapper registration
 ```
 // services.AddTransient will return a new instance each time - This will not keep state TOO SHORT!
             // services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
@@ -101,4 +101,14 @@ namespace Books.api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                  .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
+```
+## Check: Add BookResultFilterAttribute and BooksResultFilterAttribute with Automapper Profile
+
+* Note: Startup now requires for Automapper 5/9/2019:
+```
+//services.AddAutoMapper(); needs update as shown below
+Mapper.Initialize(cfg =>
+{
+    cfg.AddProfile<BooksProfile>();
+});
 ```
