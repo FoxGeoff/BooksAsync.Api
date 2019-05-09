@@ -13,7 +13,7 @@ namespace BooksAsync.Api.Entities
         [Required]
         [MaxLength(150)]
         public string FirstName { get; set; }
-
+ 
         [Required]
         [MaxLength(150)]
         public string LastName { get; set; }
