@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BooksAsync.api;
 using BooksAsync.Api.Contexts;
 using BooksAsync.Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -47,7 +48,12 @@ namespace BooksAsync.Api
             // services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
             services.AddScoped<IBooksRepository, BooksRepository>();
 
-            services.AddAutoMapper(); // needs update
+            //services.AddAutoMapper(); needs update as shown below
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<BooksProfile>();
+            });
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                  .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
