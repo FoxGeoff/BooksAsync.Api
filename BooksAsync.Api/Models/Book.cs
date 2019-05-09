@@ -7,7 +7,7 @@ namespace BooksAsync.Api.Models
 {
     public class Book
     {
-        public int id { get; set; }
+        public Guid Id { get; set; }
 
         public string Author { get; set; }
 
