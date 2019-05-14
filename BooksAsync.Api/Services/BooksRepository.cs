@@ -58,5 +58,11 @@ namespace BooksAsync.Api.Services
 
             _context.Add(bookToAdd);
         }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            //return true if 1 or more entities are changed
+            return (await _context.SaveChangesAsync() > 0);
+        }
     }
 }
