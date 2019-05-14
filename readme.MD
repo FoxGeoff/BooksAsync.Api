@@ -112,3 +112,4 @@ Mapper.Initialize(cfg =>
     cfg.AddProfile<BooksProfile>();
 });
 ```
+## Check: Add Create Book
