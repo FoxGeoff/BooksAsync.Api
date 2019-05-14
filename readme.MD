@@ -93,13 +93,13 @@ namespace Books.api
 * Startup -  Automapper registration
 ```
 // services.AddTransient will return a new instance each time - This will not keep state TOO SHORT!
-            // services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
-            services.AddScoped<IBooksRepository, BooksRepository>();
+// services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
+services.AddScoped<IBooksRepository, BooksRepository>();
 
-            services.AddAutoMapper(); // needs update
+services.AddAutoMapper(); // needs update
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+        .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
 ```
 ## Check: Add BookResultFilterAttribute and BooksResultFilterAttribute with Automapper Profile
