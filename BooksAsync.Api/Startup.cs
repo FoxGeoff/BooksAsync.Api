@@ -48,11 +48,22 @@ namespace BooksAsync.Api
             // services.AddSingleton is not equal to OR shorter than the DbContext scope TOO LONG!
             services.AddScoped<IBooksRepository, BooksRepository>();
 
-            //services.AddAutoMapper(); needs update as shown below
+            //services.AddAutoMapper(); needs update as shown below:-
+            // AutoMapper Configrtions #1
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<BooksProfile>();
             });
+
+            // AutoMapper Configrtions #2
+            // https://stackoverflow.com/questions/54239669/asp-net-core-2-2-unable-to-resolve-service-for-type-automapper-imapper
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new BooksProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)

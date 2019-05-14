@@ -18,5 +18,5 @@ namespace BooksAsync.Api.Services
         void AddBook(Entities.Book bookToAdd);
 
         Task<bool> SaveChangesAsync();
-    }
+     }
 }

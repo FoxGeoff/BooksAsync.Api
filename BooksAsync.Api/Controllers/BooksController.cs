@@ -1,4 +1,6 @@
-﻿using BooksAsync.Api.Filters;
+﻿using AutoMapper;
+using BooksAsync.Api.Filters;
+using BooksAsync.Api.Models;
 using BooksAsync.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,11 +13,14 @@ namespace BooksAsync.Api.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IBooksRepository _booksRepository;
+        private readonly IMapper _mapper;
 
-        public BooksController(IBooksRepository booksRepository)
+        public BooksController(IBooksRepository booksRepository, IMapper mapper)
         {
             _booksRepository = booksRepository
                 ?? throw new ArgumentNullException(nameof(booksRepository));
+            _mapper = mapper 
+                ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
@@ -40,8 +45,10 @@ namespace BooksAsync.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBook()
+        public async Task<IActionResult> CreateBook([FromBody] BookForCreation book)
         {
+            //_booksRepository.AddBook(bookEntity);
+
             return Ok();
         }
     }
