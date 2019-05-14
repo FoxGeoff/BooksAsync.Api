@@ -50,5 +50,10 @@ namespace BooksAsync.Api.Services
             }
         }
 
+        public void AddBook(Book bookToAdd)
+        {
+            if (bookToAdd == null)
+                throw new ArgumentNullException(nameof(bookToAdd)); 
+        }
     }
 }

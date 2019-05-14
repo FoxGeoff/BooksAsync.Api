@@ -38,5 +38,11 @@ namespace BooksAsync.Api.Controllers
             }
             return Ok(bookEntity);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateBook()
+        {
+            return Ok();
+        }
     }
 }
