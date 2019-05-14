@@ -19,7 +19,7 @@ namespace BooksAsync.Api.Controllers
         {
             _booksRepository = booksRepository
                 ?? throw new ArgumentNullException(nameof(booksRepository));
-            _mapper = mapper 
+            _mapper = mapper
                 ?? throw new ArgumentNullException(nameof(mapper));
         }
 
@@ -33,7 +33,7 @@ namespace BooksAsync.Api.Controllers
 
         [HttpGet]
         [BookResultFilter]
-        [Route("{id}")]
+        [Route("{id}", Name = "GetBook")]
         public async Task<IActionResult> GetBook(Guid id)
         {
             var bookEntity = await _booksRepository.GetbookAsync(id);
@@ -47,9 +47,14 @@ namespace BooksAsync.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBook([FromBody] BookForCreation book)
         {
-            //_booksRepository.AddBook(bookEntity);
+            var bookEntity = _mapper.Map<Entities.Book>(book);
+            _booksRepository.AddBook(bookEntity);
 
-            return Ok();
+            await _booksRepository.SaveChangesAsync();
+
+            return CreatedAtRoute("GetBook",
+                new { id = bookEntity.Id },
+                bookEntity);
         }
     }
 }

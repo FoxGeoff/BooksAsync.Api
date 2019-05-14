@@ -114,4 +114,15 @@ Mapper.Initialize(cfg =>
 ```
 ## Check: Add Create Book (creating a Resource Demo)
 
+* Note now required for Automapper DI in Controller:
+```
+// AutoMapper Configrtions #2
+            // https://stackoverflow.com/questions/54239669/asp-net-core-2-2-unable-to-resolve-service-for-type-automapper-imapper
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new BooksProfile());
+            });
 
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+```

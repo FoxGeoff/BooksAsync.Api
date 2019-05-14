@@ -10,7 +10,7 @@ namespace BooksAsync.api
                 .ForMember(dest => dest.Author, opt => opt.MapFrom(src => 
                     $"{src.Author.FirstName} {src.Author.LastName}"));
 
-            //CreateMap<Api.Models.BookForCreation, Api.Entities.Book>();
+            CreateMap<Api.Models.BookForCreation, Api.Entities.Book>();
         }
     }
 }

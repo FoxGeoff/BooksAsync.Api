@@ -56,7 +56,6 @@ namespace BooksAsync.Api
             });
 
             // AutoMapper Configrtions #2
-            // https://stackoverflow.com/questions/54239669/asp-net-core-2-2-unable-to-resolve-service-for-type-automapper-imapper
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new BooksProfile());
