@@ -50,10 +50,13 @@ namespace BooksAsync.Api.Services
             }
         }
 
+        //Per api instructions don't use .AddAsync()
         public void AddBook(Book bookToAdd)
         {
             if (bookToAdd == null)
-                throw new ArgumentNullException(nameof(bookToAdd)); 
+                throw new ArgumentNullException(nameof(bookToAdd));
+
+            _context.Add(bookToAdd);
         }
     }
 }
