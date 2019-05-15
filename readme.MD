@@ -126,3 +126,4 @@ Mapper.Initialize(cfg =>
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 ```
+## Check: Use WebSurge to create a new book
