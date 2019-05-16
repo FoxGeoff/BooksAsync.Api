@@ -128,4 +128,4 @@ Mapper.Initialize(cfg =>
 ```
 ## Check: Use WebSurge to create a new book
 ![](/BooksAsync.Api/Resources/WebSurge.png)!
-[](/BooksAsync.Api/Resources/WebSurgeSave.png)
+![](/BooksAsync.Api/Resources/WebSurgeSave.png)
