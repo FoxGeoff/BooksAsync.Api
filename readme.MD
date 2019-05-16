@@ -127,4 +127,4 @@ Mapper.Initialize(cfg =>
             services.AddSingleton(mapper);
 ```
 ## Check: Use WebSurge to create a new book
-![]( /Resources/WebSurge.png)
+![](/BooksAsync.Api/Resources/WebSurge.png)
