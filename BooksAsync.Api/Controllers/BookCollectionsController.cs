@@ -19,7 +19,7 @@ namespace BooksAsync.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBooksCollection([FromBody] IEnumerable<BookForCreation> books)
+        public async Task<IActionResult> CreateBooksCollection([FromBody] IEnumerable<BookForCreation> bookCollection)
         {
 
             return Ok();
