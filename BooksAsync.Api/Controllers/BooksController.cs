@@ -41,6 +41,10 @@ namespace BooksAsync.Api.Controllers
             {
                 return NotFound();
             }
+
+            //in production get "dummycover" is from a data store (database)
+            var bookCover = await _booksRepository.GetBookCoverAsync("dummycover");
+
             return Ok(bookEntity);
         }
 

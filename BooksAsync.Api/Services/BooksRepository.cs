@@ -1,9 +1,12 @@
 ﻿using BooksAsync.Api.Contexts;
 using BooksAsync.Api.Entities;
+using BooksAsync.Api.ExternalModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BooksAsync.Api.Services
@@ -11,10 +14,14 @@ namespace BooksAsync.Api.Services
     public class BooksRepository : IBooksRepository, IDisposable
     {
         private BooksContext _context;
+        private IHttpClientFactory _httpClientFactory;
 
-        public BooksRepository(BooksContext context)
+        public BooksRepository(BooksContext context, IHttpClientFactory httpClientFactory)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _context = context ??
+                throw new ArgumentNullException(nameof(context));
+            _httpClientFactory = httpClientFactory ??
+                throw new ArgumentNullException(nameof(httpClientFactory));
         }
 
         public async Task<Book> GetbookAsync(Guid id)
@@ -71,5 +78,21 @@ namespace BooksAsync.Api.Services
                 .Include(b => b.Author).ToListAsync();
         }
 
+        public async Task<BookCover> GetBookCoverAsync(string coverId)
+        {
+            var httpClient = _httpClientFactory.CreateClient();
+
+            //pass though a dummy name
+            var response = await httpClient
+                .GetAsync($"http://localhost:52644/api/bookcovers/{coverId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<BookCover>(
+                    await response.Content.ReadAsStringAsync());
+            }
+
+            return null;
+        }
     }
 }
