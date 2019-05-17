@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BooksAsync.Api.Services
@@ -18,5 +17,7 @@ namespace BooksAsync.Api.Services
         void AddBook(Entities.Book bookToAdd);
 
         Task<bool> SaveChangesAsync();
-     }
+
+        Task<IEnumerable<Entities.Book>> GetbooksAsync(IEnumerable<Guid> bookIds);
+    }
 }
