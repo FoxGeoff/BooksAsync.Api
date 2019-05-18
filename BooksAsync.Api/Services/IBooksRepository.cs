@@ -13,8 +13,6 @@ namespace BooksAsync.Api.Services
 
         Task<IEnumerable<Entities.Book>> GetBooksAsync();
 
-        Task<BookCover> GetBookCoverAsync(string coverId);
-
         Task<Entities.Book> GetbookAsync(Guid id);
 
         void AddBook(Entities.Book bookToAdd);
@@ -22,5 +20,9 @@ namespace BooksAsync.Api.Services
         Task<bool> SaveChangesAsync();
 
         Task<IEnumerable<Entities.Book>> GetbooksAsync(IEnumerable<Guid> bookIds);
+
+        Task<BookCover> GetBookCoverAsync(string coverId);
+
+        Task<IEnumerable<BookCover>> GetBookCoversAsync(Guid bookId);
     }
 }

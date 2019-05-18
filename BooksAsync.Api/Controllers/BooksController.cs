@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using BooksAsync.Api.ExternalModels;
 using BooksAsync.Api.Filters;
 using BooksAsync.Api.Models;
 using BooksAsync.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BooksAsync.Api.Controllers
@@ -42,8 +44,16 @@ namespace BooksAsync.Api.Controllers
                 return NotFound();
             }
 
-            //in production get "dummycover" is from a data store (database)
-            var bookCover = await _booksRepository.GetBookCoverAsync("dummycover");
+            // in production get "dummycover" is from a data store (database)
+            /* var bookCover = await _booksRepository.GetBookCoverAsync("DummyCover"); */
+            // update to get multipal covers
+            var bookCovers = await _booksRepository.GetBookCoversAsync(id); 
+
+            // pass two items into one
+            
+            var propertyBag = new Tuple<Entities.Book, IEnumerable<BookCover>>(
+                bookEntity, bookCovers); 
+
 
             return Ok(bookEntity);
         }
