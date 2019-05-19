@@ -132,4 +132,16 @@ Mapper.Initialize(cfg =>
 ![](/BooksAsync.Api/Resources/WebSureSave.png)
 
 ## Check: Handling Multiple Service Calls one by One
+*
+```
+[HttpGet]
+[BookResultFilter]
+[Route("{id}", Name = "GetBook")]
+public async Task<IActionResult> GetBook(Guid id)
+...
+...
+// dummycover1, dummycover2, dummycover3, dummycover4, dummycover5
+var bookCovers = await _booksRepository.GetBookCoversAsync(id); 
+
+```
 
