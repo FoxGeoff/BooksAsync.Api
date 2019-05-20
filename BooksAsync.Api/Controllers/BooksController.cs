@@ -45,17 +45,25 @@ namespace BooksAsync.Api.Controllers
             }
 
             // in production get "dummycover" is from a data store (database)
+
+            // first version just one cover returned
             /* var bookCover = await _booksRepository.GetBookCoverAsync("DummyCover"); */
-            // update to get multipal covers
-            var bookCovers = await _booksRepository.GetBookCoversAsync(id); 
 
-            // pass two items into one
-            
+            // update to get multipal covers one by one
+            // dummycover1, dummycover2, dummycover3, dummycover4, dummycover5
+            var bookCovers = await _booksRepository.GetBookCoversAsync(id);
+
+            // pass two items into one:
+
+            //#1 method
+            /*
             var propertyBag = new Tuple<Entities.Book, IEnumerable<BookCover>>(
-                bookEntity, bookCovers); 
-
-
-            return Ok(bookEntity);
+                bookEntity, bookCovers);  */
+            //#2 method
+            /*
+            (Entities.Book book, IEnumerable<BookCover> bookCovers) propertyBag = (bookEntity, bookCovers); */
+            //#3 method
+            return Ok((book: bookEntity, bookCovers: bookCovers));
         }
 
         [HttpPost]

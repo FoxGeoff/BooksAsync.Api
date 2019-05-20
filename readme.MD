@@ -72,7 +72,7 @@ namespace BooksAsync.Api.Filters
     }
 }
 ```
-## Check Add Automapper
+## Check: Add Automapper
 * Add: AutoMapper.Extensions.MicrosoftDependencyInjection
 * Add: BookProfile.cs
 ```
@@ -144,4 +144,5 @@ public async Task<IActionResult> GetBook(Guid id)
 var bookCovers = await _booksRepository.GetBookCoversAsync(id); 
 
 ```
+## Check: Passing Multile Objects to an Async ResultFilter with ValueTuple
 
