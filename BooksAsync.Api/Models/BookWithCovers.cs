@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BooksAsync.Api.Models
 {
-    public class BookWithCovers : BookCover
+    public class BookWithCovers : Book
     {
         public IEnumerable<BookCover> bookCovers { get; set; } = new List<BookCover>();
     }

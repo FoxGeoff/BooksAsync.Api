@@ -8,7 +8,9 @@ namespace BooksAsync.Api.Filters
 {
     public class BookWithCoversResultFilterAttribute : ResultFilterAttribute
     {
-        public override async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+        public override async Task OnResultExecutionAsync(
+            ResultExecutingContext context,
+            ResultExecutionDelegate next)
         {
             var resultFromAction = context.Result as ObjectResult;
             if (resultFromAction?.Value == null
@@ -18,8 +20,13 @@ namespace BooksAsync.Api.Filters
                 await next();
                 return;
             }
+            var (book, bookCovers) = ((Entities.Book,
+                IEnumerable<ExternalModels.BookCover>))resultFromAction.Value;
 
-            resultFromAction.Value = Mapper.Map<IEnumerable<Models.Book>>(resultFromAction.Value);
+            //var mappedBook = Mapper.Map<BookWithCovers>(book);
+
+            //resultFromAction.Value = Mapper.Map(bookCovers, mappedBook);
+
 
             await next();
         }

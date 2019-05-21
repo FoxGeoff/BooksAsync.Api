@@ -32,10 +32,10 @@ namespace BooksAsync.Api.Controllers
             var bookEntities = await _booksRepository.GetBooksAsync();
             return Ok(bookEntities);
         }
-
+         
         [HttpGet]
-        [BookResultFilter]
         [Route("{id}", Name = "GetBook")]
+        [BookWithCoversResultFilter]
         public async Task<IActionResult> GetBook(Guid id)
         {
             var bookEntity = await _booksRepository.GetbookAsync(id);
@@ -63,7 +63,7 @@ namespace BooksAsync.Api.Controllers
             /*
             (Entities.Book book, IEnumerable<BookCover> bookCovers) propertyBag = (bookEntity, bookCovers); */
             //#3 method
-            return Ok((book: bookEntity, bookCovers: bookCovers));
+            return Ok((bookEntity, bookCovers));
         }
 
         [HttpPost]
