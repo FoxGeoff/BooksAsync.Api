@@ -146,3 +146,5 @@ var bookCovers = await _booksRepository.GetBookCoversAsync(id);
 ```
 ## Check: Passing Multile Objects to an Async ResultFilter with ValueTuple
 
+## Check: Mapping Multiple Objects to One
+

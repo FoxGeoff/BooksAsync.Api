@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BooksAsync.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
@@ -23,9 +24,9 @@ namespace BooksAsync.Api.Filters
             var (book, bookCovers) = ((Entities.Book,
                 IEnumerable<ExternalModels.BookCover>))resultFromAction.Value;
 
-            //var mappedBook = Mapper.Map<BookWithCovers>(book);
+            var mappedBook = Mapper.Map<BookWithCovers>(book);
 
-            //resultFromAction.Value = Mapper.Map(bookCovers, mappedBook);
+            resultFromAction.Value = Mapper.Map(bookCovers, mappedBook);
 
 
             await next();
